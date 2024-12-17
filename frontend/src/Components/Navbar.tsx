@@ -1,20 +1,23 @@
 import { ModeToggle } from "./mode-togglet";
-import { Search } from 'lucide-react'
+import { Search, UserRound } from 'lucide-react'
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   return (
-    <div className='mt-3 max-h-16 mx-auto px-2 flex justify-between'>
-      <div className="text-red-500" >Blogger</div>
-      <div className='border-slate-500 rounded-full border-slate-500/15 hidden sm:block' >
+    <div className='mt-3 max-h-16 px-2 flex justify-between'>
+      <div className="text-red-500 font-bold font-mono text-xl drop-shadow translate-y-2" >Blogger</div>
+      <div className='border border-slate-500 rounded-full border-slate-500/10 hidden sm:block' >
         <div className="flex px-4 p-2 gap-2 " >
-          <input className="bg-transparent " placeholder='Serach' />
-          <Search />
+          <input className="bg-transparent border-none focus:border-transparent " placeholder='Serach' />
+          <Search size='20' />
         </div>
       </div>
       <div className='flex gap-4  '>
-        <Search className='block sm:hidden' />
+        <Search size='20' className='rounded-full border border-slate-500/10 block sm:hidden' />
         <ModeToggle />
-        <div>Acc</div>
+        <Button>
+          <UserRound size='40' />
+        </Button>
       </div>
     </div>
   )
