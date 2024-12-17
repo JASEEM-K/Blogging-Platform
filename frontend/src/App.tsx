@@ -1,13 +1,13 @@
-import Navbar from './Components/Navbar'
+import Navbar from './components/Navbar'
 import RichTextEditor from './RichTextEditor'
 
 function App() {
 
   return (
-    <>
-    <Navbar />
-    <RichTextEditor />
-    </>
+    <div className=' max-w-screen-xl justify-center align-middle '>
+      <Navbar />
+      <RichTextEditor />
+    </div>
   )
 }
 
