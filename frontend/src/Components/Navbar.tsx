@@ -8,8 +8,8 @@ const Navbar = () => {
       <div className="text-red-500 font-bold font-mono text-xl drop-shadow translate-y-2" >Blogger</div>
       <div className='border border-slate-500 rounded-full border-slate-500/10 hidden sm:block' >
         <div className="flex px-4 p-2 gap-2 " >
-          <input className="bg-transparent border-none focus:border-transparent " placeholder='Serach' />
-          <Search size='20' />
+          <input className="bg-transparent focus:outline-none -translate-y-1  " placeholder='Serach' />
+          <Search size='20' className="cursor-pointer" />
         </div>
       </div>
       <div className='flex gap-4  '>
