@@ -10,29 +10,32 @@ export const LoginPage = () => {
 
 
   return (
-    <div className=' max-w-screen-sm mx-auto border border-slate-500/15 rounded-lg flex flex-col items-center space-y-4 '>
-      <h1 className=''>Welcome Back</h1>
+    <div className=' max-w-screen-sm mx-auto border border-slate-500/15 rounded-lg flex flex-col justify-center items-center space-y-4 bg-primary/10 '>
+      <h1 className='text-2xl'>Welcome Back</h1>
       <p> Login to you&apos;re account</p>
-      <form className=''>
-        <div className=' flex gap-2 border border-slate-500/10 w-64 rounded-full px-4 '>
-          <UserRound size='10' />
+      <form className='space-y-4 relative items-center'>
+        <div className=' flex gap-2 border border-slate-500/10 w-64 rounded-full px-4  '>
+          <UserRound size='20' />
           <input value={formData.username} name='username' placeholder='Username' type='text'
             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-            className='focus:outline-none bg-transparent px-4'
-          />
-        </div>
-        <div className=' flex gap-2 border border-slate-500/10 w-64 rounded-full justify-between px-4 '>
-          <KeyRound className='transform rotate-12' size='10' />
-          <input value={formData.password} placeholder='Password' type={showPassword}
-            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             className='focus:outline-none bg-transparent '
           />
-          {showPassword === 'password' ?
-            <Eye onClick={() => setShowPassword('text')} /> :
-            <EyeClosed onClick={() => setShowPassword('password')} />}
         </div>
-        <button
-        >
+        <div className=' gap-2 border border-slate-500/10 rounded-full justify-between px-4 '>
+          <div className='absolute flex items-center' >
+            <KeyRound className='' size='20' />
+          </div>
+          <input value={formData.password} placeholder='Password' type={showPassword}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            className='focus:outline-none bg-transparent w-full '
+          />
+          <div className='absolute flex items-center'>
+            {showPassword === 'password' ?
+              <Eye onClick={() => setShowPassword('text')} /> :
+              <EyeClosed onClick={() => setShowPassword('password')} />}
+          </div>
+        </div>
+        <button>
           Login
         </button>
       </form>
