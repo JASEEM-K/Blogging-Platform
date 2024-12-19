@@ -3,6 +3,8 @@ import Blog, { IBlog } from "./../modals/blogModal.ts"
 import { ObjectId } from "mongoose"
 import Comment from './../modals/commentModal.ts'
 
+import { v2 as cloudinary } from 'cloudinary'
+
 export const createBlog = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const { title, content, tags, isDraft }: IBlog = req.body
@@ -22,6 +24,23 @@ export const createBlog = async (req: Request, res: Response): Promise<void> => 
 		await newBlog.save()
 		res.status(200).json(newBlog)
 
+	} catch (error) {
+		console.log("Error in Creating Blog :", error instanceof Error && error.message)
+		res.status(500).json({ error: "Internal Server Error" })
+		return
+	}
+}
+
+export const uploadFile = async (req: Request, res: Response): Promise<void> => {
+	try {
+		let { img } = req.body
+		if (!img) {
+			res.status(400).json({ error: "Please provide a file " })
+			return
+		}
+		const uploadResponse = await cloudinary.uploader.upload(img)
+		res.status(200).json({ response_url: uploadResponse.secure_url })
+		return
 	} catch (error) {
 		console.log("Error in Creating Blog :", error instanceof Error && error.message)
 		res.status(500).json({ error: "Internal Server Error" })
