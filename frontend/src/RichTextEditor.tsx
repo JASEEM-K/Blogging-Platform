@@ -5,8 +5,6 @@ import Highlight from '@tiptap/extension-highlight'
 
 import './style.scss'
 
-const content = '<p>Hello World!</p>'
-
 const RichTextEditor = () => {
   const editor = useEditor({
     extensions: [
@@ -14,15 +12,22 @@ const RichTextEditor = () => {
       Highlight,
       Typography
     ],
-    content,
+    content: '<p>Hello World!</p>',
   })
 
-  console.log(editor)
+  const handleLogthis = () => {
+    const html = editor?.getHTML()
+    const htmlString = JSON.stringify(html)
+    console.log(htmlString);
+  }
+
+
 
   return (
     <div>
-      <h1 className=' background-color:white '>Hai</h1>
+      <div id='resulting-code-space' />
       <EditorContent className=' background-color:white ' editor={editor} />
+      <button onClick={handleLogthis} > Print </button>
     </div>
   )
 }

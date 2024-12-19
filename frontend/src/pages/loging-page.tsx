@@ -23,16 +23,16 @@ export const LoginPage = () => {
         </div>
         <div className=' flex gap-2 border border-slate-500/10 rounded-lg justify-between px-4 '>
           <div className='flex items-center' >
-            <KeyRound className='' size='20' />
+            <KeyRound className='rotate-12' size='20' />
           </div>
           <input value={formData.password} placeholder='Password' type={showPassword}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             className='focus:outline-none bg-transparent w-full '
           />
-          <div className='flex items-center'>
+          <div className='flex items-center cursor-pointer'>
             {showPassword === 'password' ?
-              <Eye onClick={() => setShowPassword('text')} /> :
-              <EyeClosed onClick={() => setShowPassword('password')} />}
+              <EyeClosed onClick={() => setShowPassword('text')} /> :
+              <Eye onClick={() => setShowPassword('password')} />}
           </div>
         </div>
         <button>
