@@ -14,22 +14,22 @@ export const LoginPage = () => {
       <h1 className='text-2xl'>Welcome Back</h1>
       <p> Login to you&apos;re account</p>
       <form className='space-y-4 relative items-center'>
-        <div className=' flex gap-2 border border-slate-500/10 w-64 rounded-full px-4  '>
+        <div className='flex gap-2 border border-slate-500/10 w-64 rounded-lg px-4 focus:outline-primary  '>
           <UserRound size='20' />
           <input value={formData.username} name='username' placeholder='Username' type='text'
             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
             className='focus:outline-none bg-transparent '
           />
         </div>
-        <div className=' gap-2 border border-slate-500/10 rounded-full justify-between px-4 '>
-          <div className='absolute flex items-center' >
+        <div className=' flex gap-2 border border-slate-500/10 rounded-lg justify-between px-4 '>
+          <div className='flex items-center' >
             <KeyRound className='' size='20' />
           </div>
           <input value={formData.password} placeholder='Password' type={showPassword}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             className='focus:outline-none bg-transparent w-full '
           />
-          <div className='absolute flex items-center'>
+          <div className='flex items-center'>
             {showPassword === 'password' ?
               <Eye onClick={() => setShowPassword('text')} /> :
               <EyeClosed onClick={() => setShowPassword('password')} />}
