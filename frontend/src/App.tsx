@@ -4,7 +4,7 @@ import { LoginPage } from './pages/loging-page'
 function App() {
 
   return (
-    <div className=' max-w-screen-lg h-full mx-auto  '>
+    <div className=' max-w-screen-lg h-full  mx-auto  '>
       <Navbar />
       <LoginPage />
     </div>

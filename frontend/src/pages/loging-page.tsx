@@ -11,12 +11,12 @@ export const LoginPage = () => {
 
 
   return (
-    <div className='font-mono max-w-screen-sm mx-auto p-4 py-8 border border-slate-500/15 rounded-lg flex flex-col h-full justify-center items-center align-middle space-y-4   '>
+    <div className='font-mono max-w-screen-sm mx-auto py-8 border border-slate-500/15 rounded-lg flex flex-col  items-center space-y-8 sm:space-y-4 h-full bottom-0 mb-0 '>
       <h1 className='text-4xl mt-2 font-bold'>Welcome Back</h1>
       <p className='opacity-60'> Login to you&apos;re account</p>
-      <form className='space-y-4 flex flex-col max-w-screen-sm items-center'>
+      <form className='space-y-8 sm:space-y-4 flex flex-col max-w-screen-sm items-center'>
         <div className='space-y-1.5 w-full'>
-          <label>Username </label>
+          <label className='opacity-70'>Username:</label>
           <div className='flex gap-2 border border-slate-500/10   rounded-lg px-4 focus:outline-primary  '>
             <UserRound size='20' />
             <input value={formData.username} name='username' placeholder='Username' type='text'
@@ -26,7 +26,7 @@ export const LoginPage = () => {
           </div>
         </div>
         <div className='space-y-1.5 w-full'>
-          <label>Password </label>
+          <label className='opacity-70'>Password:</label>
           <div className=' flex gap-2 border border-slate-500/10 rounded-lg justify-between px-4 '>
             <div className='flex items-center' >
               <KeyRound className='rotate-12' size='20' />
@@ -47,9 +47,8 @@ export const LoginPage = () => {
         </Button>
       </form>
       <div className='flex'>
-        <p>Dont&apos;t have account</p>
-
-        <a>Sign up</a>
+        <p>Dont&apos;t have account&nbsp;</p>
+        <a >Sign up</a>
       </div>
     </div>
   )
