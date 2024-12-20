@@ -21,8 +21,6 @@ const RichTextEditor = () => {
     console.log(htmlString);
   }
 
-
-
   return (
     <div>
       <div id='resulting-code-space' />
