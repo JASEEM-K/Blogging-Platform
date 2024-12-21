@@ -1,12 +1,12 @@
 import Navbar from './components/Navbar'
-import { LoginPage } from './pages/loging-page'
+import { ProfilePage } from './pages/profile-page'
 
 function App() {
 
   return (
     <div className=' max-w-screen-lg h-full  mx-auto  '>
       <Navbar />
-      <LoginPage />
+      <ProfilePage />
     </div>
   )
 }
