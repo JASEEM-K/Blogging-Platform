@@ -17,7 +17,7 @@ export const LoginPage = () => {
       <form className='space-y-8 sm:space-y-4 flex flex-col max-w-screen-sm items-center'>
         <div className='space-y-1.5 w-full'>
           <label className='opacity-70'>Username:</label>
-          <div className='flex gap-2 border border-slate-500/10   rounded-lg px-4 focus:outline-primary  '>
+          <div className=' flex items-center h-9 gap-2 focus-within:ring-1 focus-within:ring-ring border border-input bg-transparent transition-colors text-base shadow-sm rounded-lg justify-start px-3 py-1 md:text-sm '>
             <UserRound size='20' />
             <input value={formData.username} name='username' placeholder='Username' type='text'
               onChange={(e) => setFormData({ ...formData, username: e.target.value })}
@@ -25,15 +25,15 @@ export const LoginPage = () => {
             />
           </div>
         </div>
-        <div className='space-y-1.5 w-full'>
+        <div className='space-y-1.5 w-full  '>
           <label className='opacity-70'>Password:</label>
-          <div className=' flex gap-2 border border-slate-500/10 rounded-lg justify-between px-4 '>
+          <div className=' flex items-center h-9 gap-2 focus-within:ring-1 focus-within:ring-ring border border-input bg-transparent transition-colors text-base shadow-sm rounded-lg justify-between px-3 py-1 md:text-sm '>
             <div className='flex items-center' >
               <KeyRound className='rotate-12' size='20' />
             </div>
             <input value={formData.password} placeholder='Password' type={showPassword}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              className='focus:outline-none bg-transparent w-full '
+              className='focus:outline-none bg-transparent w-full placeholder:text-muted-foreground '
             />
             <div className='flex items-center cursor-pointer'>
               {showPassword === 'password' ?
