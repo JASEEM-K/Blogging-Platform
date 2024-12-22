@@ -1,0 +1,42 @@
+import { Trash2, Heart, MessageSquareText } from 'lucide-react'
+
+type BlogPostProps = {
+  author: string,
+  content: string,
+  like: number,
+  comment: number,
+}
+
+export const BlogPost = ({ author, content, like, comment }: BlogPostProps) => {
+
+  const isDiv = document.getElementById("blog-out-container")
+  if (isDiv)
+    isDiv.innerHTML = content
+
+  return (
+    <div className="font-mono border-secondary/20 p-4">
+      <div className=" flex justify-end">
+        {/* Delete Icon */}
+        <Trash2 className="hover:text-red-500" />
+      </div>
+      <div>{author}</div>
+      {/* To show the contennts of the blog Post */}
+      <div className="overflow-hidden h-80 w-full p-4 ">
+        <div id="blog-out-container" />
+      </div>
+
+      {/* the controls bar of the blog post */}
+      <div className="flex justify-start gap-4">
+        <div className="flex gap-2">
+          <Heart />
+          {like}
+        </div>
+        <div className="flex gap-2">
+          <MessageSquareText />
+          {comment}
+        </div>
+      </div>
+    </div>
+  )
+}
+
