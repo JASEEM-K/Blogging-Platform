@@ -26,7 +26,6 @@ import {
 } from 'lucide-react'
 
 const RichTextEditor = () => {
-
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -37,9 +36,8 @@ const RichTextEditor = () => {
         types: ['heading', 'paragraph'],
       }),
     ],
-    content: '<p>Hello World!</p>',
+    content: '<p>This is a basic example of implementing images. Drag to re-order.</p> <img src="https://placehold.co/600x400" /><img src="https://placehold.co/800x400" />'
   })
-
   const addImage = () => {
     const url = window.prompt("Enter URL ")
 
@@ -164,8 +162,8 @@ const RichTextEditor = () => {
 
       </div>
 
-      <div>
-        <EditorContent className='background-color:white ' editor={editor} />
+      <div className='max-h-screen overflow-scroll m-3'>
+        <EditorContent className='background-color:white  ' editor={editor} />
       </div>
     </div>
   )

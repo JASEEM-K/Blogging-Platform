@@ -19,6 +19,14 @@
     @apply mt-1 mb-1 list-disc ;
   }
 
+  .tiptap img {
+    @apply m-2;
+  }
+
+  .ProseMirror-selectednode img {
+    @apply border-2 border-purple-500  ;
+  }
+
   .is-active {
     @apply text-blue-500 ;
   }
