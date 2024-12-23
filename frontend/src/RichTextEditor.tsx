@@ -2,6 +2,7 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Typography from '@tiptap/extension-typography'
 import Highlight from '@tiptap/extension-highlight'
+import TextAlign from '@tiptap/extension-text-align'
 
 import {
   Undo2,
@@ -13,17 +14,25 @@ import {
   Strikethrough,
   Quote,
   List,
-  ALargeSmall,
   ListOrdered,
+  AlignCenter,
+  Highlighter,
+  AlignLeft,
+  AlignRight,
+  AlignJustify,
 
 } from 'lucide-react'
 
 const RichTextEditor = () => {
+
   const editor = useEditor({
     extensions: [
       StarterKit,
       Highlight,
-      Typography
+      Typography,
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+      }),
     ],
     content: '<p>Hello World!</p>',
   })
@@ -32,7 +41,7 @@ const RichTextEditor = () => {
   return (
     <div>
 
-      <div>
+      <div className='flex gap-4 p-4 border-b border-secondary'>
 
         <button
           onClick={() => editor?.chain().focus().toggleBold().run()}
@@ -88,6 +97,41 @@ const RichTextEditor = () => {
           className={editor?.isActive('blockquote') ? 'is-active' : ''}
         >
           <Quote size={20} />
+        </button>
+
+        <button
+          onClick={() => editor?.chain().focus().toggleHighlight().run()}
+          className={editor?.isActive('highlight') ? 'is-active' : ''}
+        >
+          <Highlighter size={20} />
+        </button>
+
+        <button
+          onClick={() => editor?.chain().focus().setTextAlign('left').run()}
+          className={editor?.isActive({ textAlign: 'left' }) ? 'is-active' : ''}
+        >
+          <AlignLeft size={20} />
+        </button>
+
+        <button
+          onClick={() => editor?.chain().focus().setTextAlign('center').run()}
+          className={editor?.isActive({ textAlign: 'center' }) ? 'is-active' : ''}
+        >
+          <AlignCenter size={20} />
+        </button>
+
+        <button
+          onClick={() => editor?.chain().focus().setTextAlign('right').run()}
+          className={editor?.isActive({ textAlign: 'right' }) ? 'is-active' : ''}
+        >
+          <AlignRight size={20} />
+        </button>
+
+        <button
+          onClick={() => editor?.chain().focus().setTextAlign('justify').run()}
+          className={editor?.isActive({ textAlign: 'justify' }) ? 'is-active' : ''}
+        >
+          <AlignJustify size={20} />
         </button>
 
         <button
