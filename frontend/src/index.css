@@ -8,13 +8,15 @@
   }
 
   /* List styles */
-  .tiptap ul,
+  .tiptap ul{
+    @apply pl-4 mt-5 mb-5 list-disc;
+  },
   .tiptap ol {
-    @apply pl-4 mt-5 mb-5 list-disc ; /* Use Tailwind utilities */
+    @apply pl-4 mt-5 mb-5 list-decimal ; /* Use Tailwind utilities */
   }
 
   .tiptap li p {
-    @apply mt-1 mb-1 list-decimal;
+    @apply mt-1 mb-1 list-disc ;
   }
 
   /* Heading styles */
@@ -40,7 +42,7 @@
 
   /* Code and preformatted text styles */
   .tiptap code {
-    @apply bg-secondary  rounded-md text-sm p-2; /* Matches your custom variables */
+    @apply bg-secondary  rounded-md text-sm p-2 ; /* Matches your custom variables */
   }
 
   .tiptap pre {
