@@ -3,6 +3,72 @@
 @tailwind utilities;
 
 @layer base {
+  .tiptap :first-child {
+    margin-top: 0;
+  }
+
+  /* List styles */
+  .tiptap ul,
+  .tiptap ol {
+    @apply pl-4 mt-5 mb-5 list-disc ; /* Use Tailwind utilities */
+  }
+
+  .tiptap li p {
+    @apply mt-1 mb-1 list-decimal;
+  }
+
+  /* Heading styles */
+  .tiptap h1 {
+    @apply text-4xl font-bold mt-14 mb-6; /* Responsive typography */
+  }
+
+  .tiptap h2 {
+    @apply text-3xl font-semibold mt-12 mb-6;
+  }
+
+  .tiptap h3 {
+    @apply text-xl font-medium mt-10 mb-4;
+  }
+
+  .tiptap h4 {
+    @apply text-lg font-medium mt-10 mb-4;
+  },
+  .tiptap h5,
+  .tiptap h6 {
+    @apply text-base font-medium mt-8 mb-4;
+  }
+
+  /* Code and preformatted text styles */
+  .tiptap code {
+    @apply bg-secondary  rounded-md text-sm p-2; /* Matches your custom variables */
+  }
+
+  .tiptap pre {
+    @apply bg-black text-white rounded-lg p-4 my-6;
+    font-family: 'JetBrainsMono', monospace;
+  }
+
+  .tiptap pre code {
+    @apply text-white text-xs p-0 bg-transparent;
+  }
+
+  /* Highlighting */
+  .tiptap mark {
+    @apply bg-yellow-200 rounded-sm px-1;
+  }
+
+  /* Blockquote */
+  .tiptap blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic my-6;
+  }
+
+  /* Horizontal Rule */
+  .tiptap hr {
+    @apply border-t border-gray-200 my-8;
+  }
+}
+
+@layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 47.4% 11.2%;
