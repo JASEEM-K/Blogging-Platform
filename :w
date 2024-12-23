@@ -8,19 +8,13 @@
   }
 
   /* List styles */
-  .tiptap ul{
-    @apply pl-4 mt-5 mb-5 list-disc;
-  }
+  .tiptap ul,
   .tiptap ol {
-    @apply pl-4 mx-4 mt-5 mb-5 list-decimal ; /* Use Tailwind utilities */
+    @apply pl-4 mt-5 mb-5 list-decimal ; /* Use Tailwind utilities */
   }
 
   .tiptap li p {
-    @apply mt-1 mb-1 list-disc ;
-  }
-
-  .is-active {
-    @apply text-blue-500 ;
+    @apply mt-1 mb-1 list-disc;
   }
 
   /* Heading styles */

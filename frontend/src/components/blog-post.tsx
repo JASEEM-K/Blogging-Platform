@@ -11,7 +11,7 @@ export const BlogPost = ({ author, content, like, comment }: BlogPostProps) => {
 
 
   return (
-    <div className="font-mono border border-secondary p-4">
+    <div className=" font-mono border border-secondary p-4">
       <div className=" flex justify-end">
         {/* Delete Icon */}
         <Trash2 className="hover:text-red-500" />
@@ -19,7 +19,7 @@ export const BlogPost = ({ author, content, like, comment }: BlogPostProps) => {
       <div>{author}</div>
       {/* To show the contennts of the blog Post */}
       <div className="overflow-hidden max-h-80 w-full p-4 mb-2 rounded-lg  ">
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div className='tiptap' dangerouslySetInnerHTML={{ __html: content }} />
       </div>
 
       {/* the controls bar of the blog post */}
