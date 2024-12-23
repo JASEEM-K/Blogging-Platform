@@ -3,6 +3,7 @@ import StarterKit from '@tiptap/starter-kit'
 import Typography from '@tiptap/extension-typography'
 import Highlight from '@tiptap/extension-highlight'
 import TextAlign from '@tiptap/extension-text-align'
+import ImageExtention from '@tiptap/extension-image'
 
 import {
   Undo2,
@@ -19,6 +20,7 @@ import {
   Highlighter,
   AlignLeft,
   AlignRight,
+  Image,
   AlignJustify,
 
 } from 'lucide-react'
@@ -30,12 +32,20 @@ const RichTextEditor = () => {
       StarterKit,
       Highlight,
       Typography,
+      ImageExtention,
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
     ],
     content: '<p>Hello World!</p>',
   })
+
+  const addImage = () => {
+    const url = window.prompt("Enter URL ")
+
+    if (url)
+      editor?.chain().focus().setImage({ src: url }).run()
+  }
 
 
   return (
@@ -132,6 +142,12 @@ const RichTextEditor = () => {
           className={editor?.isActive({ textAlign: 'justify' }) ? 'is-active' : ''}
         >
           <AlignJustify size={20} />
+        </button>
+
+        <button
+          onClick={addImage}
+        >
+          <Image size={20} />
         </button>
 
         <button
