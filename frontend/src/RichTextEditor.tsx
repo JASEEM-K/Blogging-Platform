@@ -4,6 +4,7 @@ import Typography from '@tiptap/extension-typography'
 import Highlight from '@tiptap/extension-highlight'
 import TextAlign from '@tiptap/extension-text-align'
 import ImageExtention from '@tiptap/extension-image'
+import React from 'react'
 
 import {
   Undo2,
@@ -22,10 +23,25 @@ import {
   AlignRight,
   Image,
   AlignJustify,
+  ImageUp,
 
 } from 'lucide-react'
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./components/ui/dialog"
+import { useRef } from 'react'
+
+
 const RichTextEditor = () => {
+
+  const UploadRef = useRef<HTMLInputElement | null>(null)
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -38,8 +54,17 @@ const RichTextEditor = () => {
     ],
     content: '<p>This is a basic example of implementing images. Drag to re-order.</p> <img src="https://placehold.co/600x400" /><img src="https://placehold.co/800x400" />'
   })
-  const addImage = () => {
-    const url = window.prompt("Enter URL ")
+
+  const handleImageInput = () => {
+    if (UploadRef.current)
+      UploadRef.current.click()
+  }
+
+  const addImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+
+    console.log(file);
+    const url = 'https://placehold.co/600x400'
 
     if (url)
       editor?.chain().focus().setImage({ src: url }).run()
@@ -142,11 +167,41 @@ const RichTextEditor = () => {
           <AlignJustify size={20} />
         </button>
 
-        <button
-          onClick={addImage}
-        >
-          <Image size={20} />
-        </button>
+        <Dialog>
+          <DialogTrigger>
+
+            <button
+              className='transition translate-y-0.5'
+            >
+              <Image size={20} />
+            </button>
+
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Are you absolutely sure?</DialogTitle>
+              <DialogDescription className='flex flex-col items-center'>
+
+                <div
+                  className=' border-2 border-slate-500/40 rounded-lg flex flex-col items-center justify-center align-middle h-52 w-52'
+                  onClick={handleImageInput}
+                >
+                  <ImageUp size={60} />
+                  <p></p>
+                </div>
+
+                <input
+                  type='file'
+                  className='hidden'
+                  ref={UploadRef}
+                  accept='image/*'
+                  onChange={addImage}
+                />
+
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
 
         <button
           onClick={() => editor?.chain().focus().undo().run()}
