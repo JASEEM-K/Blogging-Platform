@@ -165,3 +165,11 @@ export const updateProfile = async (req: Request, res: Response): Promise<void> 
 		return
 	}
 }
+
+export const getUploadedImages = () => {
+	try {
+
+	} catch (error) {
+
+	}
+}

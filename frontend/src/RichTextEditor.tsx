@@ -4,6 +4,8 @@ import Typography from '@tiptap/extension-typography'
 import Highlight from '@tiptap/extension-highlight'
 import TextAlign from '@tiptap/extension-text-align'
 import ImageExtention from '@tiptap/extension-image'
+import { Color } from '@tiptap/extension-color'
+import TextStyle from '@tiptap/extension-text-style'
 import React from 'react'
 
 import {
@@ -14,6 +16,7 @@ import {
   Italic,
   Code,
   Strikethrough,
+  Baseline,
   Quote,
   List,
   ListOrdered,
@@ -41,12 +44,15 @@ import { useRef } from 'react'
 const RichTextEditor = () => {
 
   const UploadRef = useRef<HTMLInputElement | null>(null)
+  const ColorRef = useRef<HTMLInputElement | null>(null)
 
   const editor = useEditor({
     extensions: [
       StarterKit,
       Highlight,
       Typography,
+      Color,
+      TextStyle,
       ImageExtention,
       TextAlign.configure({
         types: ['heading', 'paragraph'],
@@ -59,6 +65,12 @@ const RichTextEditor = () => {
     if (UploadRef.current)
       UploadRef.current.click()
   }
+
+  const handleColorClick = () => {
+    if (ColorRef.current)
+      ColorRef.current.click()
+  }
+
 
   const addImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -96,6 +108,19 @@ const RichTextEditor = () => {
         >
           <Strikethrough size={20} />
         </button>
+
+        <div
+          onClick={handleColorClick}
+          className='relative flex flex-col items-center cursor-pointer '>
+          <Baseline size={25} className='' />
+          <input
+            type='color'
+            ref={ColorRef}
+            onInput={e => editor?.chain().focus().setColor(e.target.value).run()}
+            value={editor?.getAttributes('textStyle').color}
+            className='max-h-1.5 max-w-6 absolute bottom-0'
+          />
+        </div>
 
         <button
           onClick={() => editor?.chain().focus().toggleCode().run()}
@@ -139,33 +164,37 @@ const RichTextEditor = () => {
           <Highlighter size={20} />
         </button>
 
-        <button
-          onClick={() => editor?.chain().focus().setTextAlign('left').run()}
-          className={editor?.isActive({ textAlign: 'left' }) ? 'is-active' : ''}
-        >
-          <AlignLeft size={20} />
-        </button>
+        <div className='flex gap-4 px-4 border-x border-slate-500/20'>
 
-        <button
-          onClick={() => editor?.chain().focus().setTextAlign('center').run()}
-          className={editor?.isActive({ textAlign: 'center' }) ? 'is-active' : ''}
-        >
-          <AlignCenter size={20} />
-        </button>
+          <button
+            onClick={() => editor?.chain().focus().setTextAlign('left').run()}
+            className={editor?.isActive({ textAlign: 'left' }) ? 'is-active' : ''}
+          >
+            <AlignLeft size={20} />
+          </button>
 
-        <button
-          onClick={() => editor?.chain().focus().setTextAlign('right').run()}
-          className={editor?.isActive({ textAlign: 'right' }) ? 'is-active' : ''}
-        >
-          <AlignRight size={20} />
-        </button>
+          <button
+            onClick={() => editor?.chain().focus().setTextAlign('center').run()}
+            className={editor?.isActive({ textAlign: 'center' }) ? 'is-active' : ''}
+          >
+            <AlignCenter size={20} />
+          </button>
 
-        <button
-          onClick={() => editor?.chain().focus().setTextAlign('justify').run()}
-          className={editor?.isActive({ textAlign: 'justify' }) ? 'is-active' : ''}
-        >
-          <AlignJustify size={20} />
-        </button>
+          <button
+            onClick={() => editor?.chain().focus().setTextAlign('right').run()}
+            className={editor?.isActive({ textAlign: 'right' }) ? 'is-active' : ''}
+          >
+            <AlignRight size={20} />
+          </button>
+
+          <button
+            onClick={() => editor?.chain().focus().setTextAlign('justify').run()}
+            className={editor?.isActive({ textAlign: 'justify' }) ? 'is-active' : ''}
+          >
+            <AlignJustify size={20} />
+          </button>
+
+        </div>
 
         <Dialog>
           <DialogTrigger>
@@ -220,7 +249,7 @@ const RichTextEditor = () => {
       <div className='max-h-screen overflow-scroll m-3'>
         <EditorContent className='background-color:white  ' editor={editor} />
       </div>
-    </div>
+    </div >
   )
 }
 
