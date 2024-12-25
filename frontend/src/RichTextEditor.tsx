@@ -6,7 +6,7 @@ import TextAlign from '@tiptap/extension-text-align'
 import ImageExtention from '@tiptap/extension-image'
 import { Color } from '@tiptap/extension-color'
 import TextStyle from '@tiptap/extension-text-style'
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
   Undo2,
@@ -45,6 +45,7 @@ const RichTextEditor = () => {
 
   const UploadRef = useRef<HTMLInputElement | null>(null)
   const ColorRef = useRef<HTMLInputElement | null>(null)
+  const [urlText, setUrlText] = useState('')
 
   const editor = useEditor({
     extensions: [
@@ -208,7 +209,7 @@ const RichTextEditor = () => {
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Are you absolutely sure?</DialogTitle>
+              <DialogTitle className='p-2'>Upload Image or Enter Image URL:</DialogTitle>
               <DialogDescription className='flex flex-col items-center'>
 
                 <div
@@ -216,7 +217,20 @@ const RichTextEditor = () => {
                   onClick={handleImageInput}
                 >
                   <ImageUp size={60} />
-                  <p></p>
+                </div>
+
+                <div>
+                  <input
+                    type='text'
+                    value={urlText}
+                    onChange={e => setUrlText(e.target.value)}
+                    className='bg-transparent border border-slate-500 rounded-sm mt-4'
+                    placeholder='Enter URL'
+                  />
+                  <button
+                  >
+                    Submit
+                  </button>
                 </div>
 
                 <input
