@@ -13,10 +13,24 @@ interface UserState {
 }
 
 export const useUserStore = create<UserState>((set) => ({
+
 	authUser: null,
 	isRegistering: false,
 	isLogingIn: false,
 	isCheckingAuth: true,
+
+
+	authCheck: async () => {
+		try {
+			const res = await axiosInstance.post<{ data: IUser }>('/auth/me')
+			set({ authUser: res.data as IUser })
+		} catch (error) {
+			console.log('Error in Auth Checking in User ', error);
+			set({ authUser: null })
+		} finally {
+			set({ isCheckingAuth: false })
+		}
+	},
 
 	register: async (formData: IUser) => {
 		set({ isRegistering: true })
@@ -31,20 +45,6 @@ export const useUserStore = create<UserState>((set) => ({
 		}
 	},
 
-	authCheck: async () => {
-		try {
-			const res = await axiosInstance.post<{ data: IUser }>('/auth/me')
-			set({ authUser: res.data as IUser })
-		} catch (error) {
-			console.log('Error in Auth Checking in User ', error);
-			set({ authUser: null })
-		} finally {
-			set({ isCheckingAuth: false })
-		}
-	},
-
-
-
 	login: async (formData: IUser) => {
 		set({ isLogingIn: true })
 		try {
@@ -56,9 +56,7 @@ export const useUserStore = create<UserState>((set) => ({
 		} finally {
 			set({ isLogingIn: false })
 		}
-
-	}
-
+	},
 
 }))
 

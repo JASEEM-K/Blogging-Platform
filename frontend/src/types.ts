@@ -8,3 +8,7 @@ export interface IUser {
   email?: string,
 }
 
+export interface IBlog {
+  id?: string,
+  content?: string,
+}
