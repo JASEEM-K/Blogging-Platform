@@ -6,7 +6,7 @@ import TextAlign from '@tiptap/extension-text-align'
 import ImageExtention from '@tiptap/extension-image'
 import { Color } from '@tiptap/extension-color'
 import TextStyle from '@tiptap/extension-text-style'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   Undo2,
@@ -43,6 +43,7 @@ import { useRef } from 'react'
 
 const RichTextEditor = () => {
 
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const UploadRef = useRef<HTMLInputElement | null>(null)
   const ColorRef = useRef<HTMLInputElement | null>(null)
   const [urlText, setUrlText] = useState('')
@@ -59,8 +60,23 @@ const RichTextEditor = () => {
         types: ['heading', 'paragraph'],
       }),
     ],
-    content: '<p>This is a basic example of implementing images. Drag to re-order.</p> <img src="https://placehold.co/600x400" /><img src="https://placehold.co/800x400" />'
+    content: '<p>This is a basic example of implementing images. Drag to re-order.</p> <img src="https://placehold.co/600x400" /><img src="https://placehold.co/800x400" />',
+
+    editorProps: {
+      handleClickOn(_, __, node) {
+        if (node.type.name === 'image') {
+          const imagesrc = node.attrs.src
+          setSelectedImage(imagesrc)
+        } else {
+          setSelectedImage(null)
+        }
+      },
+
+    }
+
   })
+
+  console.log(selectedImage)
 
   const handleImageInput = () => {
     if (UploadRef.current)
@@ -70,6 +86,13 @@ const RichTextEditor = () => {
   const handleColorClick = () => {
     if (ColorRef.current)
       ColorRef.current.click()
+  }
+
+  const [style, setStyle] = useState('border-slate-500')
+  const handleColorChange = () => {
+    style === 'border-slate-500' ?
+      setStyle('border-purple-500') :
+      setStyle('border-slate-500')
   }
 
 
@@ -86,6 +109,13 @@ const RichTextEditor = () => {
 
   return (
     <div>
+
+      <button
+        className={` border ${style} p-4 `}
+        onClick={handleColorChange}
+      >
+        Hi
+      </button>
 
       <div className='flex gap-4 p-4 border-b border-secondary'>
 
