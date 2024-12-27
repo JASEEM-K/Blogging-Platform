@@ -7,6 +7,7 @@ export const FullBlog = () => {
 
   const userData = {
     username: 'joe',
+    profilePic: 'https://placehold.co/800x800',
     title: 'First Time Ha ',
     content: '<p>This is a basic example of implementing images. Drag to re-order.</p> <img src="https://placehold.co/600x400" /><img src="https://placehold.co/800x400" />',
     comments: [
@@ -41,14 +42,25 @@ export const FullBlog = () => {
 
       <div className='my-4'>
 
-        <h1 className='text-4xl font-bold '>
+        <h1 className='text-4xl font-bold my-4 '>
           {userData.title}
         </h1>
 
-        <div className='flex font-mono'>
-          @&nbsp;{userData.username}
-        </div>
+        <div className='flex font-mono border-y border-secondary py-1.5 px-4 justify-between '>
 
+          <div className='flex gap-1.5 items-center'>
+            <Avatar className='size-8'>
+              <AvatarImage src={userData.profilePic} />
+              <AvatarFallback>{userData.username.slice(0, 2).toUpperCase()}</AvatarFallback>
+            </Avatar>
+            {userData.username}
+          </div>
+
+          <div>
+            25<sup>th</sup>&nbsp;Dec&nbsp;2024
+          </div>
+
+        </div>
       </div>
 
       <div className='tiptap ' dangerouslySetInnerHTML={{ __html: userData.content }} />
@@ -73,8 +85,11 @@ export const FullBlog = () => {
             </Avatar>
 
             <div className=''>
-              <div className='flex font-mono text-sm font-bold'>
+              <div className='flex font-mono text-sm font-bold items-center'>
                 {cmt.username}
+                <div className='font-normal pl-4 text-xs opacity-70'>
+                  11 seconds ago
+                </div>
               </div>
               <div className='text-lg '>
                 {cmt.message}
