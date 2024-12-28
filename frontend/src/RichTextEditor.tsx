@@ -6,7 +6,7 @@ import TextAlign from '@tiptap/extension-text-align'
 import ImageExtention from '@tiptap/extension-image'
 import { Color } from '@tiptap/extension-color'
 import TextStyle from '@tiptap/extension-text-style'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import {
   Undo2,
@@ -119,7 +119,7 @@ const RichTextEditor = () => {
           <input
             type='color'
             ref={ColorRef}
-            onInput={e => editor?.chain().focus().setColor(e.target.value).run()}
+            onInput={(e) => editor?.chain().focus().setColor((e.target as HTMLInputElement).value).run()}
             value={editor?.getAttributes('textStyle').color}
             className='max-h-1.5 max-w-6 absolute bottom-0'
           />
@@ -221,12 +221,16 @@ const RichTextEditor = () => {
                   <ImageUp size={60} />
                 </div>
 
+                <div className='flex opacity-70'>
+                  <p>&mdash;&mdash;&mdash;&mdash;&mdash;</p>&nbsp;&nbsp;OR&nbsp;&nbsp;<p>&mdash;&mdash;&mdash;&mdash;&mdash;</p>
+                </div>
+
                 <div>
                   <input
                     type='text'
                     value={urlText}
-                    onChange={e => setUrlText(e.target.value)}
-                    className='bg-transparent border border-slate-500 rounded-sm mt-4'
+                    onChange={e => setUrlText((e.target as HTMLInputElement).value)}
+                    className='bg-transparent border border-slate-500 rounded-sm mt-2'
                     placeholder='Enter URL'
                   />
                   <button
